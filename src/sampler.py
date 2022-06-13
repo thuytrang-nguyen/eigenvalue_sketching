@@ -88,7 +88,7 @@ def sample_eig_default(data_matrix, s, scale=False, \
     else:
         return n*min_eig/float(s)
 
-def countSketch(data_matrix, s, flag=0, rankcheck=0):
+def countSketch(data_matrix, s, flag=0, rankcheck=0, return_type="sketch"):
     n = len(data_matrix)
     tr = np.trace(data_matrix)
     tr_m = np.eye(n)*tr
@@ -104,6 +104,9 @@ def countSketch(data_matrix, s, flag=0, rankcheck=0):
 
     for i in range(n):
        sketch_m[h_buckets[i],i]=h_signs[i]
+
+    if return_type == "sketch":
+       return sketch_m
     
     sketch = np.matmul(sketch_m, np.matmul(data_matrix-tr_m, np.transpose(sketch_m)))
     if flag == 1:
