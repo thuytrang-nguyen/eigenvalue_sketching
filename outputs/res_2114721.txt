@@ -1,0 +1,3 @@
+SLURM_JOBID:  2114721
+Starting to run sample script...
+Done running the sample script!

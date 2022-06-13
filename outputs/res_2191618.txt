@@ -1,0 +1,8 @@
+SLURM_JOBID:  2191618
+Starting to run sample script...
+loaded dataset
+||A||_infty: 2.0
+chosen eigs: [5.11590605e-14 5.12000000e-14 5.12409805e-14 5.12820020e-14
+ 5.12000000e-02 1.25000000e-01 3.95061728e-01 2.00000000e+00]
+nnzA: 5000
+Done running the sample script!

@@ -1,0 +1,7 @@
+/var/lib/slurm-llnl/slurmd/job2114722/slurm_script: line 15: /ven/bin/activate: No such file or directory
+Traceback (most recent call last):
+  File "compare_unified.py", line 14, in <module>
+    from src.get_dataset import get_data
+  File "/mnt/nfs/home/thuytrangngu/eigenvalue_estimation_main_new/src/get_dataset.py", line 6, in <module>
+    import skimage.io
+ModuleNotFoundError: No module named 'skimage'

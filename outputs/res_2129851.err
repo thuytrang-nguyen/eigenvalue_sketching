@@ -1,0 +1,5 @@
+/var/lib/slurm-llnl/slurmd/job2129851/slurm_script: line 15: /ven/bin/activate: No such file or directory
+Traceback (most recent call last):
+  File "compare_unified.py", line 1, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'

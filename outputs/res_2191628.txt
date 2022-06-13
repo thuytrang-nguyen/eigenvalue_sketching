@@ -1,0 +1,5 @@
+SLURM_JOBID:  2191628
+Starting to run sample script...
+||A||_infty: 1000000
+chosen eigs: [1.e+00 1.e+00 1.e+00 1.e+00 1.e+00 1.e+00 1.e+00 1.e+06]
+Done running the sample script!

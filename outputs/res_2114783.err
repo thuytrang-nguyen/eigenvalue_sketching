@@ -1,0 +1,12 @@
+/var/lib/slurm-llnl/slurmd/job2114783/slurm_script: line 15: /ven/bin/activate: No such file or directory
+Traceback (most recent call last):
+  File "compare_unified.py", line 42, in <module>
+    true_mat, dataset_size, min_samples, max_samples = get_data(dataset_name)
+  File "/mnt/nfs/home/thuytrangngu/eigenvalue_estimation_main_new/src/get_dataset.py", line 150, in get_data
+    g = nx.read_edgelist(data_file,create_using=nx.DiGraph(), nodetype = int)
+  File "/mnt/nfs/home/thuytrangngu/eigenvalue_estimation_main_new/ven/lib/python3.8/site-packages/networkx/utils/decorators.py", line 843, in func
+    return argmap._lazy_compile(__wrapper)(*args, **kwargs)
+  File "<class 'networkx.utils.decorators.argmap'> compilation 5", line 3, in argmap_read_edgelist_1
+  File "/mnt/nfs/home/thuytrangngu/eigenvalue_estimation_main_new/ven/lib/python3.8/site-packages/networkx/utils/decorators.py", line 189, in _open_file
+    fobj = _dispatch_dict[ext](path, mode=mode)
+FileNotFoundError: [Errno 2] No such file or directory: './data/CA-CondMat.txt'

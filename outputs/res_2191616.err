@@ -1,0 +1,10 @@
+/var/lib/slurm-llnl/slurmd/job2191616/slurm_script: line 15: /ven/bin/activate: No such file or directory
+  0%|          | 0/95 [00:00<?, ?it/s]  0%|          | 0/95 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "compare_unified.py", line 76, in <module>
+    tracked_errors, tracked_percentile1, tracked_percentile2, nnz_sm = approximator(\
+  File "/mnt/nfs/home/thuytrangngu/eigenvalue_estimation_main_new/src/main_approximator.py", line 84, in approximator
+    min_eig_single_round = denseSketch(true_mat, i, flag=0, rankcheck=search_rank)
+  File "/mnt/nfs/home/thuytrangngu/eigenvalue_estimation_main_new/src/sampler.py", line 145, in denseSketch
+    all_eig_val_estimates = np.real(np.linalg.eigvalsh(subsample_matrix))
+NameError: name 'subsample_matrix' is not defined
