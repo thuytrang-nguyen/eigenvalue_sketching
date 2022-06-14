@@ -37,7 +37,7 @@ for eps in tqdm(epses):
 			L2_error = np.linalg.norm(A_half @ sketch_m.T @ sketch_m @ A_half - A)
 	
 			# compute eigenvalue estimate
-			est_eig = np.max(sketch_m @ A @ sketch_m.T)
+			est_eig = np.max(np.real(np.linalg.eigvals(sketch_m @ A @ sketch_m.T)))
 
 			# compute error
 			est_error = np.abs(n - est_eig)
