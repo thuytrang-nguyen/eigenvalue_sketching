@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import sqrtm
-from src.sampler import countSketch 
+from src.sampler import countSketch, denseSketch 
 from tqdm import tqdm
 import os
 
 # generate a zeros matrix
 # "countSketch", "denseSketch"
-sketch_type = "denseSketch"
-sizes = range(400,5000,200)
+sketch_type = "countSketch"
+sizes = range(500,5000,200)
 
 #eps = 0.01
 epses = list(np.arange(0.05, 0.11, 0.01))
@@ -21,7 +21,11 @@ for eps in tqdm(epses):
 
 	for n in tqdm(sizes):
 		diag_A = eps*np.ones(n)
+		diag_A[int(1/eps**2)+1:] = 0		
 		diag_A[0] = n
+		
+		# plt.plot(diag_A)
+		# plt.show()
 
 		A = np.diag(diag_A)
 
