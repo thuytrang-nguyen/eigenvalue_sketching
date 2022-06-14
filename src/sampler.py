@@ -132,7 +132,8 @@ def denseSketch(data_matrix, s,flag=0, rankcheck=0, return_type="sketch"):
     if s >= n:
         return 
 
-    sketch_m = np.random.choice([-1,1], size=(s,n))
+    #sketch_m = np.random.choice([-1,1], size=(s,n))
+    sketch_m = np.random.normal(loc = 0.0, scale=1.0, size=(s,n))
     sketch_m = (1/np.sqrt(s))*sketch_m
 
     if return_type == "sketch":
