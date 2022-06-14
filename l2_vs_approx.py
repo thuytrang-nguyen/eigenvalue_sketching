@@ -7,7 +7,7 @@ import os
 
 # generate a zeros matrix
 # "countSketch", "denseSketch"
-sketch_type = "countSketch"
+sketch_type = "denseSketch"
 sizes = range(400,5000,200)
 
 #eps = 0.01
