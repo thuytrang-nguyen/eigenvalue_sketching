@@ -91,7 +91,7 @@ def sample_eig_default(data_matrix, s, scale=False, \
 def countSketch(data_matrix, s, flag=0, rankcheck=0, return_type="sketch"):
     n = len(data_matrix)
     tr = np.trace(data_matrix)
-    tr_m = np.eye(n)*tr
+    tr_m = np.eye(n)*tr*(1/n)
 
     if s >= n:
         return 
@@ -128,7 +128,7 @@ def denseSketch(data_matrix, s,flag=0, rankcheck=0):
 
     n = len(data_matrix)
     tr = np.trace(data_matrix)
-    tr_m = np.eye(n)*tr
+    tr_m = np.eye(n)*tr*(1/n)
     if s >= n:
         return 
 
@@ -183,7 +183,7 @@ def hybrid(data_matrix, s2, norm, rankcheck=0, nnzA=0, ratio=10, flag=0, multipl
 
     # sketch of size s2
     tr = np.trace(subsample_matrix)
-    tr_m = np.eye(len(subsample_matrix))*tr
+    tr_m = np.eye(len(subsample_matrix))*tr*(1/len(subsample_matrix)
     h_buckets = np.random.choice(np.arange(s2), size=s1)
     h_signs = np.random.choice([-1, 1], size=s1)
 
