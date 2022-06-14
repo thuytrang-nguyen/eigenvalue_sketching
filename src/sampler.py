@@ -186,7 +186,7 @@ def hybrid(data_matrix, s2, norm, rankcheck=0, nnzA=0, ratio=10, flag=0, multipl
 
     # sketch of size s2
     tr = np.trace(subsample_matrix)
-    tr_m = np.eye(len(subsample_matrix))*tr*(1/len(subsample_matrix)
+    tr_m = np.eye(len(subsample_matrix))*tr*(1/len(subsample_matrix))
     h_buckets = np.random.choice(np.arange(s2), size=s1)
     h_signs = np.random.choice([-1, 1], size=s1)
 
