@@ -124,7 +124,7 @@ def countSketch(data_matrix, s, flag=0, rankcheck=0, return_type="sketch"):
 
     return(min_eig)
 
-def denseSketch(data_matrix, s,flag=0, rankcheck=0):
+def denseSketch(data_matrix, s,flag=0, rankcheck=0, return_type="sketch"):
 
     n = len(data_matrix)
     tr = np.trace(data_matrix)
@@ -134,6 +134,9 @@ def denseSketch(data_matrix, s,flag=0, rankcheck=0):
 
     sketch_m = np.random.choice([-1,1], size=(s,n))
     sketch_m = (1/np.sqrt(s))*sketch_m
+
+    if return_type == "sketch":
+        return sketch_m
 
     #sketch = np.matmul(sketch_m, np.matmul(data_matrix, np.transpose(sketch_m)))
     sketch = np.matmul(sketch_m, np.matmul(data_matrix-tr_m, np.transpose(sketch_m)))

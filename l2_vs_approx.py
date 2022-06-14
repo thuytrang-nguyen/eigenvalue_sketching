@@ -6,6 +6,7 @@ from tqdm import tqdm
 import os
 
 # generate a zeros matrix
+# "countSketch", "denseSketch"
 sketch_type = "countSketch"
 sizes = range(400,5000,200)
 
@@ -31,7 +32,10 @@ for eps in tqdm(epses):
 
 		for i in range(trials):
 			# get the sketch matrix
-			sketch_m = countSketch(A, s=int(1/(eps**2)), return_type="sketch")
+			if sketch_type == "countSketch":
+				sketch_m = countSketch(A, s=int(1/(eps**2)), return_type="sketch")
+			if sketch_type == "denseSketch":
+				sketch_m = denseSketch(A, s=int(1/(eps**2)), return_type="sketch")
 
 			# get corresponding L2 error this round
 			L2_error = np.linalg.norm(A_half @ sketch_m.T @ sketch_m @ A_half - A)
@@ -49,7 +53,7 @@ for eps in tqdm(epses):
 		L2_all.append(np.mean(L2))
 		EE_all.append(np.mean(EE))
 
-	plt.plot(L2_all, EE_all, label=eps)
+	plt.plot(L2_all, EE_all, label="{:.2f}".format(eps))
 
 plt.xlabel("mean L2 error")
 plt.ylabel("mean L eigval error")
