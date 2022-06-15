@@ -21,13 +21,13 @@ from scipy.sparse.linalg import eigs
 # Parameters
 trials = 20
 search_rank = [0,1,2,3,-4,-3,-2,-1]
-dataset_name = "rand_fewbig" #arxiv" #"erdos"
+dataset_name = "diagonal" #arxiv" #"erdos"
 # dataset_name = "erdos", "MNIST", "block", "facebook", "kong", "multi_block_outer", "arxiv", "tridiagonal"
 name_adder = "multi_tr_sub"
-sampling_modes = ["uniform random sample","sparsity sampler_0.1", "cs", "hybrid_10", "dense_cs"]
+sampling_modes = ["dense"]
 
 if dataset_name == "kong":
-    similarity_measure = "tps" # "tps", "ht", 
+    similarity_measure = "tps" # "tps", "ht",
 
 # Get the dataset
 if dataset_name == "kong":
@@ -38,8 +38,20 @@ if dataset_name == "kong":
         similarity = thin_plane_spline
     true_mat = similarity(xy, xy)
 
-if dataset_name != "kong":
+if dataset_name != "kong" and dataset_name!= "diagonal":
     true_mat, dataset_size, min_samples, max_samples = get_data(dataset_name)
+
+if dataset_name == "diagonal":
+    n = 5000
+    diag_A = eps*n*np.ones(n)
+    diag_A[int(sqrt(n))+1:] = 0
+    diag_A[0] = n
+
+    true_mat = np.diag(diag_A)
+
+    dataset_size = n
+    min_samples = 100
+    max_samples = 1500
 # print(true_mat.shape)
 
 # Analysis block (not needed for code): select duplicate row and col

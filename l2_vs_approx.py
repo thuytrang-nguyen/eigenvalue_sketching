@@ -63,15 +63,15 @@ for eps in tqdm(epses):
 			# print(local_mat)	
 			# compute eigenvalue estimate
 			# est_eig = np.max(np.real(np.linalg.eigvals(np.matmul(sketch_m, np.matmul(A, sketch_m.T)))))
-			est_eig = np.max(np.real(np.linalg.eigvals(local_mat)))
+			max_est_error = np.max(np.abs(diag_A[0:int(1/eps**2)] - np.real(np.linalg.eigvals(local_mat))))
 			
 			# print(est_eig)	
 			# exit(0)
 			# compute error
-			est_error = np.abs(n - est_eig)
+			# est_error = np.abs(n - est_eig)
 
 			L2.append(L2_error)
-			EE.append(est_error)
+			EE.append(max_est_error)
 			E.append(est_eig)
 	
 		# compute mean of the L2 error and estimation error
@@ -93,13 +93,13 @@ for eps in tqdm(epses):
 ratios = np.array(L2_all) / np.array(EE_all)
 plt.plot(epses, ratios)
 
-plt.ylabel("mean L2 error / mean eig error")
+plt.ylabel("mean L2 error / mean max eig error")
 plt.xlabel("epsilon values")
 # plt.title("L2 error vs eigval error of estimation")
 # plt.legend(loc="upper right")
 dir_to_save = "figures/sketching_trial_results/"
 if not os.path.isdir(dir_to_save):
 	os.makedirs(dir_to_save)
-filename = os.path.join(dir_to_save, sketch_type+"_EpsvsRatio.pdf")
+filename = os.path.join(dir_to_save, sketch_type+"_EpsvsMaxMatchRatio.pdf")
 plt.savefig(filename)
 # '''
