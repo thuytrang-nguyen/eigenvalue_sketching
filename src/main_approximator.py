@@ -12,6 +12,7 @@ def approximator(sampling_modes, min_samples, max_samples, trials, \
     tracked_percentile1 = {}
     tracked_percentile2 = {}
     nnz_sm = {}
+    nnzA = np.count_nonzero(true_mat)
     
     # compute prob values for specific algorithms
     if "uniform random sample" in sampling_modes:
@@ -82,6 +83,9 @@ def approximator(sampling_modes, min_samples, max_samples, trials, \
 
                 if m == "dense_cs":
                     min_eig_single_round = denseSketch(true_mat, i, flag=0, rankcheck=search_rank)
+
+                if m == "dense":
+                    min_eig_single_round = denseSketch(true_mat, i, flag=1, rankcheck=search_rank, sorting="absolute")
 
                 if m == "hybrid_10" or m=="hybrid_4":
                     rat = float(m.split("_")[1])

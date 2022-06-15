@@ -20,7 +20,7 @@ from scipy.sparse.linalg import eigs
 #random.seed()
 # Parameters
 trials = 20
-search_rank = [0,1,2,3,-4,-3,-2,-1]
+search_rank = [-1, -2]
 dataset_name = "diagonal" #arxiv" #"erdos"
 # dataset_name = "erdos", "MNIST", "block", "facebook", "kong", "multi_block_outer", "arxiv", "tridiagonal"
 name_adder = "multi_tr_sub"
@@ -43,8 +43,9 @@ if dataset_name != "kong" and dataset_name!= "diagonal":
 
 if dataset_name == "diagonal":
     n = 5000
+    eps = 0.1
     diag_A = eps*n*np.ones(n)
-    diag_A[int(sqrt(n))+1:] = 0
+    diag_A[int(1/eps**2)+1:] = 0
     diag_A[0] = n
 
     true_mat = np.diag(diag_A)

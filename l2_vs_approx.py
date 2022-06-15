@@ -20,7 +20,7 @@ trials = 10
 
 L2_all = []
 EE_all = []
-E_all = []
+#E_all = []
 
 for eps in tqdm(epses):
 	"""
@@ -42,7 +42,7 @@ for eps in tqdm(epses):
 
 		L2 = []
 		EE = []
-		E = []
+		#E = []
 
 		for i in range(trials):
 			# get the sketch matrix
@@ -72,12 +72,12 @@ for eps in tqdm(epses):
 
 			L2.append(L2_error)
 			EE.append(max_est_error)
-			E.append(est_eig)
+			#E.append(est_eig)
 	
 		# compute mean of the L2 error and estimation error
 		L2_all.append(np.mean(L2))
 		EE_all.append(np.mean(EE))
-		E_all.append(np.mean(E))
+		#E_all.append(np.mean(E))
 
 	#plt.plot(L2_all, EE_all, label="{:.2f}".format(eps))
 

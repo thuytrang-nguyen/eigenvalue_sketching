@@ -124,7 +124,7 @@ def countSketch(data_matrix, s, flag=0, rankcheck=0, return_type="sketch"):
 
     return(min_eig)
 
-def denseSketch(data_matrix, s,flag=0, rankcheck=0, return_type="sketch"):
+def denseSketch(data_matrix, s,flag=0, rankcheck=0, return_type="non sketch", sorting="absolute"):
 
     n = len(data_matrix)
     tr = np.trace(data_matrix)
@@ -150,8 +150,13 @@ def denseSketch(data_matrix, s,flag=0, rankcheck=0, return_type="sketch"):
     #all_eig_val_estimates = np.real(np.asarray(all_eig_val_estimates_t))
     #all_eig_val_estimates.sort()
     all_eig_val_estimates = np.real(np.linalg.eigvalsh(sketch))
-    all_eig_val_estimates.sort()
+    if sorting != "absolute":
+        all_eig_val_estimates.sort()
+    else:
+        all_eig_val_estimates = sorted(all_eig_val_estimates, key=abs)
+    
     min_eig = np.array(all_eig_val_estimates)[rankcheck]
+    #print(len(min_eig))
 
     return(min_eig)
 
