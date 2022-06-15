@@ -10,11 +10,11 @@ import os
 # sketch_type = "countSketch"
 sketch_type = "denseSketch"
 # sizes = range(500,5000,200)
-sizes = [5000]
+sizes = [15000]
 
 
 #eps = 0.01
-epses = list(np.arange(0.05, 0.11, 0.01))
+epses = list(np.arange(0.01, 0.11, 0.01))
 # epses = [0.1]
 trials = 10
 
@@ -89,15 +89,17 @@ for eps in tqdm(epses):
 # plt.imshow(LSSL)
 # plt.show()
 # '''
-plt.plot(L2_all, EE_all)
+# plt.plot(L2_all, EE_all)
+ratios = np.array(L2_all) / np.array(EE_all)
+plt.plot(epses, ratios)
 
-plt.xlabel("mean L2 error")
-plt.ylabel("mean L eigval error")
-plt.title("L2 error vs eigval error of estimation")
+plt.ylabel("mean L2 error / mean eig error")
+plt.xlabel("epsilon values")
+# plt.title("L2 error vs eigval error of estimation")
 # plt.legend(loc="upper right")
 dir_to_save = "figures/sketching_trial_results/"
 if not os.path.isdir(dir_to_save):
 	os.makedirs(dir_to_save)
-filename = os.path.join(dir_to_save, sketch_type+"_L2vEE.pdf")
+filename = os.path.join(dir_to_save, sketch_type+"_EpsvsRatio.pdf")
 plt.savefig(filename)
 # '''
