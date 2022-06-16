@@ -32,6 +32,7 @@ for eps in tqdm(epses):
 		diag_A = eps*n*np.ones(n)
 		diag_A[int(1/eps**2)+1:] = 0		
 		diag_A[0] = n
+		diag_A[1] = -n
 		
 		# plt.plot(diag_A)
 		# plt.show()
