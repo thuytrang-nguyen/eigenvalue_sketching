@@ -16,6 +16,7 @@ from src.similarities import hyperbolic_tangent, thin_plane_spline
 from copy import copy
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import eigs
+from src.utils import generate_gp_series as ggs
 
 #random.seed()
 # Parameters
@@ -23,7 +24,7 @@ trials = 20
 search_rank = [-1, -2]
 dataset_name = "diagonal" #arxiv" #"erdos"
 # dataset_name = "erdos", "MNIST", "block", "facebook", "kong", "multi_block_outer", "arxiv", "tridiagonal"
-name_adder = "multi_tr_sub"
+name_adder = "diag_GP"
 sampling_modes = ["dense"]
 
 if dataset_name == "kong":
@@ -44,9 +45,14 @@ if dataset_name != "kong" and dataset_name!= "diagonal":
 if dataset_name == "diagonal":
     n = 5000
     eps = 0.1
+    """
     diag_A = eps*n*np.ones(n)
     diag_A[int(1/eps**2)+1:] = 0
     diag_A[0] = n
+    """
+    diag_A = np.zeros(n)
+    v = ggs(1/eps**2)
+    diag_A[0:int(1/eps**2)] = v
 
     true_mat = np.diag(diag_A)
 

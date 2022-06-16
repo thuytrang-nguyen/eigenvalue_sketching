@@ -17,3 +17,22 @@ def get_distance(X, Y):
     dists = np.sqrt(dists - sum3)
     dists = dists / np.max(dists)
     return dists
+
+def GP(max_val):
+	vals = []
+	i = 1
+	while i < max_val:
+		vals.append(i)
+		i = i*2
+	return vals
+
+def generate_gp_series(max_val):
+	max_val = int(max_val)
+	vals = GP(max_val)
+	start  = 0
+	vec_vals = np.zeros(max_val)
+	for i in range(len(vals)):
+		end = vals[i]+start
+		vec_vals[start:end] = 1.0/vals[i]
+		start = vals[i]+start
+	return vec_vals

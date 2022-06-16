@@ -4,6 +4,7 @@ from scipy.linalg import sqrtm
 from src.sampler import countSketch, denseSketch 
 from tqdm import tqdm
 import os
+from src.utils import generate_gp_series as ggs
 
 # generate a zeros matrix
 # "countSketch", "denseSketch"
@@ -29,11 +30,16 @@ for eps in tqdm(epses):
 	E_all = []
 	"""
 	for n in tqdm(sizes):
+		"""
 		diag_A = eps*n*np.ones(n)
 		diag_A[int(1/eps**2)+1:] = 0		
 		diag_A[0] = n
 		diag_A[1] = -n
-		
+		"""
+		diag_A = np.zeros(n)
+		v = ggs(1/eps**2)
+		diag_A[0:int(1/eps**2)] = v
+
 		# plt.plot(diag_A)
 		# plt.show()
 
@@ -101,6 +107,6 @@ plt.xlabel("epsilon values")
 dir_to_save = "figures/sketching_trial_results/"
 if not os.path.isdir(dir_to_save):
 	os.makedirs(dir_to_save)
-filename = os.path.join(dir_to_save, sketch_type+"_EpsvsMaxMatchRatio.pdf")
+filename = os.path.join(dir_to_save, sketch_type+"_EpsvsMaxMatchRatio_GP.pdf")
 plt.savefig(filename)
 # '''
