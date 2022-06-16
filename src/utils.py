@@ -35,4 +35,7 @@ def generate_gp_series(max_val):
 		end = vals[i]+start
 		vec_vals[start:end] = 1.0/vals[i]
 		start = vals[i]+start
-	return vec_vals
+	# assign random signs post index [0]
+	mask = np.random.choice([-1, 1], size=len(vec_vals))
+	mask[0] = 1
+	return vec_vals*mask
