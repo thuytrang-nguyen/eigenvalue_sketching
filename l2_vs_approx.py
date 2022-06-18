@@ -11,24 +11,22 @@ from src.utils import generate_gp_series as ggs
 # sketch_type = "countSketch"
 sketch_type = "denseSketch"
 # sizes = range(500,5000,200)
-sizes = [5000]
+sizes = [15000]
 
 
 #eps = 0.01
-# epses = list(np.arange(0.01, 0.11, 0.01))
+epses = list(np.arange(0.01, 0.11, 0.01))
 # epses = [0.1]
-eps = 0.03
-samples = np.array(list(range(100,2500,10)))
+# eps = 0.03
+# samples = np.array(list(range(100,2500,10)))
 trials = 10
 
 L2_all = []
 EE_all = []
 #E_all = []
 
-for j in tqdm(range(len(samples))):
-	L2_all = []
-	EE_all = []
-	E_all = []
+for j in tqdm(range(len(epses))):
+	eps = epses[j]
 	for n in sizes:
 		"""
 		diag_A = eps*n*np.ones(n)
@@ -103,15 +101,19 @@ for j in tqdm(range(len(samples))):
 # '''
 # plt.plot(L2_all, EE_all)
 #samples = samples/sizes[-1]
-ratios = np.array(EE_all)
+
+print(len(EE_all), len(L2_all))
+L2_all = np.array(L2_all)
+EE_all = np.array(EE_all)
+ratios = np.array(L2_all/EE_all)
 #EE_1p = np.array(EE_1p)
 #EE_2p = np.array(EE_2p)
 #print(ratios, EE_1p, EE_2p)
 #plt.plot(np.log(samples), np.log(ratios))
 #plt.fill_between(np.log(samples), np.log(ratios-EE_1p+1e-60), np.log(ratios+EE_2p+1e-60), alpha=0.2)
-plt.plot(L2_all, EE_all)
-plt.ylabel("mean eig matching error")
-plt.xlabel("mean L2 error")
+plt.plot(epses, ratios)
+plt.ylabel("meanL2 error / mean eig matching error")
+plt.xlabel("Epsilons")
 # plt.title("L2 error vs eigval error of estimation")
 # plt.legend(loc="upper right")
 dir_to_save = "figures/sketching_trial_results/"
