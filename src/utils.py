@@ -26,9 +26,17 @@ def GP(max_val):
 		i = i*2
 	return vals
 
+def GP_pos(max_val):
+	vals = []
+	i = 1
+	while np.sum(vals)<max_val:
+		vals.append(i)
+		i = i**2
+	return vals
+
 def generate_gp_series(max_val):
 	max_val = int(max_val)
-	vals = GP(max_val)
+	vals = GP_pos(max_val)
 	start  = 0
 	vec_vals = np.zeros(max_val)
 	for i in range(len(vals)):

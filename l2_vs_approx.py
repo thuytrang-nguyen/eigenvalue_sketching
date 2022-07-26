@@ -11,11 +11,11 @@ from src.utils import generate_gp_series as ggs
 # sketch_type = "countSketch"
 sketch_type = "denseSketch"
 # sizes = range(500,5000,200)
-sizes = [15000]
+sizes = [5000]
 
 
 #eps = 0.01
-epses = list(np.arange(0.01, 0.11, 0.01))
+epses = list(np.arange(0.02, 0.11, 0.01))
 # epses = [0.1]
 # eps = 0.03
 # samples = np.array(list(range(100,2500,10)))
@@ -81,13 +81,15 @@ for j in tqdm(range(len(epses))):
 			L2.append(L2_error)
 			EE.append(max_est_error)
 			#E.append(est_eig)
-	
-		# compute mean of the L2 error and estimation error
-		L2_all.append(np.mean(L2))
-		EE_all.append(np.mean(EE))
-		#EE_1p.append(np.percentile(EE, 20, axis=0))
-		#EE_2p.append(np.percentile(EE, 80, axis=0))
-		#E_all.append(np.mean(E))
+
+	# compute mean of the L2 error and estimation error
+	print(L2)
+	print(EE)
+	L2_all.append(np.mean(L2))
+	EE_all.append(np.mean(EE))
+	#EE_1p.append(np.percentile(EE, 20, axis=0))
+	#EE_2p.append(np.percentile(EE, 80, axis=0))
+	#E_all.append(np.mean(E))
 
 	#plt.plot(L2_all, EE_all, label="{:.2f}".format(eps))
 

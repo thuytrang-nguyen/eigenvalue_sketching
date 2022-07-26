@@ -11,13 +11,13 @@ from src.utils import generate_gp_series as ggs
 # sketch_type = "countSketch"
 sketch_type = "denseSketch"
 # sizes = range(500,5000,200)
-sizes = [5000]
+sizes = [20000]
 
 
 #eps = 0.01
 # epses = list(np.arange(0.01, 0.11, 0.01))
 # epses = [0.1]
-eps = 0.03
+# eps = 0.03
 samples = np.array(list(range(100,1100,10)))
 trials = 10
 
@@ -29,8 +29,8 @@ EE_2p = []
 
 
 diag_A = np.zeros(sizes[-1])
-v = np.sort(ggs(1/eps**2))
-diag_A[0:int(1/eps**2)] = v
+v = np.sort(ggs(sizes[0]))
+diag_A[0:sizes[0]] = v
 diag_A = np.sort(diag_A)[::-1]          # descending order sort
 
 # plt.plot(diag_A)
